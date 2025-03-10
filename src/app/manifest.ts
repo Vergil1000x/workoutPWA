@@ -10,18 +10,33 @@ export default function manifest(): MetadataRoute.Manifest {
         background_color: '#ffffff',
         theme_color: '#000000',
         orientation: "portrait",
+        id: "/",
         icons: [
             {
-                src: '/icon-192x192.jpg',
+                src: '/icon-192x192.png',
                 sizes: '192x192',
-                type: 'image/jpg',
+                type: 'image/png',
                 purpose: "maskable",
             },
             {
-                src: '/icon-512x512.jpg',
+                src: '/icon-512x512.png',
                 sizes: '512x512',
-                type: 'image/jpg',
+                type: 'image/png',
             },
         ],
+        screenshots: [
+            {
+                src: "/screenshot-1.png",
+                sizes: "1280x719",
+                type: "image/png",
+                form_factor: "wide",
+            },
+            {
+                src: "/screenshot-2.png",
+                sizes: "720x720",
+                type: "image/png",
+            },
+        ],
+        display_override: ["window-controls-overlay"],
     }
 }
