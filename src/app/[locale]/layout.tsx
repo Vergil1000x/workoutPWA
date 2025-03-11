@@ -1,22 +1,9 @@
-import type { Metadata, ResolvingMetadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const APP_NAME = "PWA App";
 const APP_DEFAULT_TITLE = "My Awesome PWA App";
@@ -25,10 +12,8 @@ const APP_DESCRIPTION = "Best PWA app in the world!";
 
 export async function generateMetadata(
   { params }: { params: Promise<{ locale: string }> },
-  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { locale } = await params;
-  const previousMetadata = await parent;
 
   return {
     manifest: `/${locale}/manifest.json`,
@@ -78,6 +63,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  // eslint-disable-next-line
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
