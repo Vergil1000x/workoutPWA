@@ -8,7 +8,7 @@ const withSerwist = withSerwistInit({
   cacheOnNavigation: true,
   swSrc: "src/app/sw.ts",
   swDest: "public/sw.js",
-  additionalPrecacheEntries: [{ url: "/~offline", revision }],  
+  additionalPrecacheEntries: [{ url: "/en/~offline", revision }, { url: "/de/~offline", revision }],
 });
 
 const nextConfig: NextConfig = {

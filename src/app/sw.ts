@@ -4,14 +4,12 @@ import { Serwist } from "serwist";
 
 declare global {
     interface WorkerGlobalScope extends SerwistGlobalConfig {
-        // Change this attribute's name to your `injectionPoint`.
-        // `injectionPoint` is an InjectManifest option.
-        // See https://serwist.pages.dev/docs/build/configuring
         __SW_MANIFEST: (PrecacheEntry | string)[] | undefined;
     }
 }
 
 declare const self: ServiceWorkerGlobalScope;
+const langs = ["en", "de"] as const;
 
 const serwist = new Serwist({
     precacheEntries: self.__SW_MANIFEST,
@@ -20,14 +18,13 @@ const serwist = new Serwist({
     navigationPreload: true,
     runtimeCaching: defaultCache,
     fallbacks: {
-        entries: [
-            {
-                url: "/~offline",
-                matcher({ request }) {
-                    return request.destination === "document";
-                },
-            },
-        ],
+        entries: langs.map(lang => ({
+            url: `/${lang}/~offline`,
+            matcher: ({ request }: { request: Request }) => {
+                const url = new URL(request.url);
+                return request.destination === "document" && url.pathname.startsWith(`/${lang}`);
+            }
+        })),
     },
 });
 
