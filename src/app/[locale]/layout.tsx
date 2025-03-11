@@ -10,13 +10,9 @@ const APP_DEFAULT_TITLE = "My Awesome PWA App";
 const APP_TITLE_TEMPLATE = "%s - PWA App";
 const APP_DESCRIPTION = "Best PWA app in the world!";
 
-export async function generateMetadata(
-  { params }: { params: Promise<{ locale: string }> },
-): Promise<Metadata> {
-  const { locale } = await params;
-
+export async function generateMetadata(): Promise<Metadata> {
   return {
-//    manifest: `/${locale}/manifest.json`,
+    //    manifest: `/${locale}/manifest.json`,
     applicationName: APP_NAME,
     title: {
       default: APP_DEFAULT_TITLE,
