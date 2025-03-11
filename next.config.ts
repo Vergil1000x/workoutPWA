@@ -6,9 +6,9 @@ const withNextIntl = createNextIntlPlugin();
 const revision = crypto.randomUUID();
 const withSerwist = withSerwistInit({
   cacheOnNavigation: true,
-  swSrc: "src/app/[locale]/sw.ts",
+  swSrc: "src/app/sw.ts",
   swDest: "public/sw.js",
-  additionalPrecacheEntries: [{ url: "/~offline", revision }],
+  additionalPrecacheEntries: [{ url: "/~offline", revision }],  
 });
 
 const nextConfig: NextConfig = {

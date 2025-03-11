@@ -16,7 +16,7 @@ export async function generateMetadata(
   const { locale } = await params;
 
   return {
-    manifest: `/${locale}/manifest.json`,
+//    manifest: `/${locale}/manifest.json`,
     applicationName: APP_NAME,
     title: {
       default: APP_DEFAULT_TITLE,
